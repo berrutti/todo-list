@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-type Props = {
+type ContainerProps = {
   children: ReactNode;
 };
 
-function Container({ children }: Props): JSX.Element {
+function Container({ children }: ContainerProps): JSX.Element {
   return <div>{children}</div>;
 }
 
