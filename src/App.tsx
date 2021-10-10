@@ -1,26 +1,11 @@
 import { useState } from "react";
 import Container from "./components/Container";
 import Header from "./components/Header";
-import Task from "./components/Task";
+import Task, { ITask } from "./components/Task";
 import "./App.css";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: "1",
-      text: "My task",
-      done: true,
-      createdTime: new Date(),
-      editedTime: undefined,
-    },
-    {
-      id: "2",
-      text: "My other task",
-      done: false,
-      createdTime: new Date(),
-      editedTime: undefined,
-    },
-  ]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
   const addTask = (text: string) => {
     const createdTime = new Date();
     const id = createdTime.valueOf().toString();
@@ -32,6 +17,14 @@ function App() {
       editedTime: undefined,
     };
     setTasks([...tasks, newTask]);
+  };
+
+  const editTask = (id: string, text: string) => {
+    const editedTime = new Date();
+    const updatedTasks = tasks.map((task) =>
+      id === task.id ? { ...task, editedTime, text } : task
+    );
+    setTasks(updatedTasks);
   };
 
   const deleteTask = (id: string) =>
@@ -53,6 +46,7 @@ function App() {
       editedTime={task.editedTime}
       toggleDone={toggleDone}
       deleteTask={deleteTask}
+      editTask={editTask}
       key={task.id}
     />
   ));

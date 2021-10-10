@@ -1,11 +1,15 @@
-type TaskProps = {
+export interface ITask {
   id: string;
   createdTime: Date;
   editedTime?: Date;
   text: string;
   done: boolean;
+};
+
+type TaskProps = ITask & {
   toggleDone: Function;
   deleteTask: Function;
+  editTask: Function;
 };
 
 function Task({
