@@ -6,10 +6,34 @@ import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: "1", text: "My task", done: true },
-    { id: "2", text: "My other task", done: false },
+    {
+      id: "1",
+      text: "My task",
+      done: true,
+      createdTime: new Date(),
+      editedTime: undefined,
+    },
+    {
+      id: "2",
+      text: "My other task",
+      done: false,
+      createdTime: new Date(),
+      editedTime: undefined,
+    },
   ]);
-  const addTask = (text: string) => console.log(text);
+  const addTask = (text: string) => {
+    const createdTime = new Date();
+    const id = createdTime.valueOf().toString();
+    const newTask = {
+      id,
+      text,
+      done: false,
+      createdTime,
+      editedTime: undefined,
+    };
+    setTasks([...tasks, newTask]);
+  };
+
   const toggleDone = (id: string) => {
     const updatedTasks = tasks.map((task) =>
       id === task.id ? { ...task, done: !task.done } : task
@@ -22,6 +46,8 @@ function App() {
       id={task.id}
       text={task.text}
       done={task.done}
+      createdTime={task.createdTime}
+      editedTime={task.editedTime}
       toggleDone={toggleDone}
       key={task.id}
     />

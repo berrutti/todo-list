@@ -1,5 +1,7 @@
 type TaskProps = {
   id: string;
+  createdTime: Date;
+  editedTime?: Date;
   text: string;
   done: boolean;
   toggleDone: Function;
