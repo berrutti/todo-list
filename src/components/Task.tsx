@@ -1,10 +1,12 @@
+import { useState } from "react";
+
 export interface ITask {
   id: string;
   createdTime: Date;
   editedTime?: Date;
   text: string;
   done: boolean;
-};
+}
 
 type TaskProps = ITask & {
   toggleDone: Function;
@@ -18,8 +20,13 @@ function Task({
   done,
   toggleDone,
   deleteTask,
+  editTask,
 }: TaskProps): JSX.Element {
-  const clicked = (id: string) => console.log("Clicked", id);
+  const [editing, setEditing] = useState(false);
+  const saveEdition = () => {
+    setEditing(false);
+    editTask(id, text);
+  };
 
   return (
     <li>
@@ -34,7 +41,12 @@ function Task({
           <label htmlFor={id}>{text}</label>
         </div>
         <div>
-          <button onClick={() => clicked(id)}>Edit</button>
+          {editing ? (
+            <button onClick={saveEdition}>Save</button>
+          ) : (
+            <button onClick={() => setEditing(true)}>Edit</button>
+          )}
+
           <button onClick={() => deleteTask(id)}>Delete</button>
         </div>
       </div>
