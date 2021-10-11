@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 export interface ITask {
   id: string;
@@ -23,33 +23,64 @@ function Task({
   editTask,
 }: TaskProps): JSX.Element {
   const [editing, setEditing] = useState(false);
-  const saveEdition = () => {
+  const [editedText, setEditedText] = useState<string>();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setEditing(false);
-    editTask(id, text);
+    editTask(id, editedText);
+  };
+
+  const handleCancel = () => {
+    setEditing(false);
+    setEditedText("");
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEditedText(event.target.value);
   };
 
   return (
     <li>
-      <div>
+      {editing ? (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              id={id}
+              type="text"
+              placeholder={text}
+              value={editedText || text}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <button type="button" onClick={handleCancel}>
+              Cancel
+            </button>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      ) : (
         <div>
-          <input
-            id={id}
-            type="checkbox"
-            defaultChecked={done}
-            onChange={() => toggleDone(id)}
-          />
-          <label htmlFor={id}>{text}</label>
+          <div>
+            <input
+              id={id}
+              type="checkbox"
+              defaultChecked={done}
+              onChange={() => toggleDone(id)}
+            />
+            <label htmlFor={id}>{text}</label>
+          </div>
+          <div>
+            <button type="button" onClick={() => setEditing(true)}>
+              Edit
+            </button>
+            <button type="button" onClick={() => deleteTask(id)}>
+              Delete
+            </button>
+          </div>
         </div>
-        <div>
-          {editing ? (
-            <button onClick={saveEdition}>Save</button>
-          ) : (
-            <button onClick={() => setEditing(true)}>Edit</button>
-          )}
-
-          <button onClick={() => deleteTask(id)}>Delete</button>
-        </div>
-      </div>
+      )}
     </li>
   );
 }
