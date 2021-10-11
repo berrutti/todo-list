@@ -1,11 +1,19 @@
 import { useState } from "react";
+
+import FilterSelector, { FilterValues } from "./components/FilterSelector";
 import Container from "./components/Container";
-import Header from "./components/Header";
+import Header from "./components/TaskGenerator";
 import Task, { ITask } from "./components/Task";
+
+import { byFilterValue } from "./utils";
 import "./App.css";
 
 function App() {
+  const [currentFilter, setCurrentFilter] = useState<FilterValues>(
+    FilterValues.UNDONE
+  );
   const [tasks, setTasks] = useState<ITask[]>([]);
+
   const addTask = (text: string) => {
     const createdTime = new Date();
     const id = createdTime.valueOf().toString();
@@ -14,7 +22,6 @@ function App() {
       text,
       done: false,
       createdTime,
-      editedTime: undefined,
     };
     setTasks([...tasks, newTask]);
   };
@@ -37,25 +44,30 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const displayedTasks = tasks.map((task) => (
-    <Task
-      id={task.id}
-      text={task.text}
-      done={task.done}
-      createdTime={task.createdTime}
-      editedTime={task.editedTime}
-      toggleDone={toggleDone}
-      deleteTask={deleteTask}
-      editTask={editTask}
-      key={task.id}
-    />
-  ));
+  const tasksToDisplay = tasks
+    .filter((task) => byFilterValue(task, currentFilter))
+    .map((task) => (
+      <Task
+        id={task.id}
+        text={task.text}
+        done={task.done}
+        createdTime={task.createdTime}
+        editedTime={task.editedTime}
+        toggleDone={toggleDone}
+        deleteTask={deleteTask}
+        editTask={editTask}
+        key={task.id}
+      />
+    ));
 
   return (
     <div className="App">
       <Container>
         <Header addTask={addTask} />
-        <ul>{displayedTasks}</ul>
+        <FilterSelector
+          setFilter={(filter: FilterValues) => setCurrentFilter(filter)}
+        />
+        <ul>{tasksToDisplay}</ul>
       </Container>
     </div>
   );

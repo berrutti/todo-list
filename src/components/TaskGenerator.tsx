@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-type HeaderProps = {
+type TaskGeneratorProps = {
   addTask: Function;
 };
 
-function Header({ addTask }: HeaderProps): JSX.Element {
+function TaskGenerator({ addTask }: TaskGeneratorProps): JSX.Element {
   const [text, setText] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -32,4 +32,4 @@ function Header({ addTask }: HeaderProps): JSX.Element {
   );
 }
 
-export default Header;
+export default TaskGenerator;
