@@ -18,6 +18,8 @@ function Task({
   id,
   text,
   done,
+  createdTime,
+  editedTime,
   toggleDone,
   deleteTask,
   editTask,
@@ -70,6 +72,11 @@ function Task({
               onChange={() => toggleDone(id)}
             />
             <label htmlFor={id}>{text}</label>
+            {editedTime ? (
+              <span>Edited Time: {editedTime.toLocaleDateString()}</span>
+            ) : (
+              <span>Created Time: {createdTime.toLocaleDateString()}</span>
+            )}
           </div>
           <div>
             <button type="button" onClick={() => setEditing(true)}>
