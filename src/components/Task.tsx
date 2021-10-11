@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 export interface ITask {
   id: string;
-  createdTime: Date;
-  editedTime?: Date;
+  createdTime: string;
+  editedTime?: string;
   text: string;
   done: boolean;
 }
@@ -73,9 +73,9 @@ function Task({
             />
             <label htmlFor={id}>{text}</label>
             {editedTime ? (
-              <span>Edited Time: {editedTime.toLocaleDateString()}</span>
+              <span>Edited Time: {editedTime}</span>
             ) : (
-              <span>Created Time: {createdTime.toLocaleDateString()}</span>
+              <span>Created Time: {createdTime}</span>
             )}
           </div>
           <div>

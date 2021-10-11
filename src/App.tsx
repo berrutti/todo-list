@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import FilterSelector, { FilterValues } from "./components/FilterSelector";
 import Container from "./components/Container";
@@ -9,13 +9,14 @@ import { byFilterValue } from "./utils";
 import "./App.css";
 
 function App() {
-  const [currentFilter, setCurrentFilter] = useState<FilterValues>(
+  const [currentFilter, setCurrentFilter] = useLocalStorage<FilterValues>(
+    "currentFilter",
     FilterValues.UNDONE
   );
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [tasks, setTasks] = useLocalStorage<ITask[]>("tasks", []);
 
   const addTask = (text: string) => {
-    const createdTime = new Date();
+    const createdTime = new Date().toISOString();
     const id = createdTime.valueOf().toString();
     const newTask = {
       id,
@@ -27,7 +28,7 @@ function App() {
   };
 
   const editTask = (id: string, text: string) => {
-    const editedTime = new Date();
+    const editedTime = new Date().toISOString();
     const updatedTasks = tasks.map((task) =>
       id === task.id ? { ...task, editedTime, text } : task
     );
