@@ -34,12 +34,9 @@ function Task({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setEditing(false);
-    editTask(id, editedText);
-  };
-
-  const handleCancel = () => {
-    setEditing(false);
-    setEditedText("");
+    if (editedText) {
+      editTask(id, editedText);
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -62,10 +59,14 @@ function Task({
               value={editedText}
               onChange={handleChange}
             />
-            <button type="button" className="button" onClick={handleCancel}>
+            <button
+              type="button"
+              className="icon-button"
+              onClick={() => setEditing(false)}
+            >
               <CancelIcon />
             </button>
-            <button type="submit" className="button">
+            <button type="submit" className="icon-button">
               <SaveIcon />
             </button>
           </div>
@@ -79,19 +80,19 @@ function Task({
               defaultChecked={done}
               onChange={() => toggleDone(id)}
             />
-            <label htmlFor={id} title={title}>
+            <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
               {text}
             </label>
             <button
               type="button"
-              className="button"
+              className="icon-button"
               onClick={() => setEditing(true)}
             >
               <EditIcon />
             </button>
             <button
               type="button"
-              className="button"
+              className="icon-button"
               onClick={() => deleteTask(id)}
             >
               <DeleteIcon />
