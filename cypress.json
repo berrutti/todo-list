@@ -3,9 +3,5 @@
   "testFiles": "**/*.spec.ts",
   "video": false,
   "viewportWidth": 1280,
-  "viewportHeight": 800,
-  "retries": {
-    "runMode": 3,
-    "openMode": 0
-  }
+  "viewportHeight": 800
 }

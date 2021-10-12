@@ -1,5 +1,15 @@
+/* eslint-disable jest/valid-expect */
+
 describe("todo app", () => {
-  it("can add new tasks", () => {});
+  before(() => {
+    cy.visit("http://localhost:3000");
+  });
+
+  it("can add new tasks", () => {
+    cy.get("#add-task-input").type("Take out the trash");
+    cy.get("#add-task-button").click();
+    cy.get("li").find("label").should("have.text", "Take out the trash");
+  });
 
   it("shows the creation time of the task", () => {});
 

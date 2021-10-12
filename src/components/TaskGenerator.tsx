@@ -20,6 +20,7 @@ function TaskGenerator({ addTask }: TaskGeneratorProps): JSX.Element {
       <h2>Add your new Task</h2>
 
       <input
+        id="add-task-input"
         type="text"
         name="text"
         autoComplete="off"
@@ -27,7 +28,7 @@ function TaskGenerator({ addTask }: TaskGeneratorProps): JSX.Element {
         placeholder="New Task..."
         onChange={handleChange}
       />
-      <button type="submit">Add</button>
+      <button id="add-task-button" type="submit">Add</button>
     </form>
   );
 }

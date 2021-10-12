@@ -16,8 +16,9 @@ function App() {
   const [tasks, setTasks] = useLocalStorage<ITask[]>("tasks", []);
 
   const addTask = (text: string) => {
-    const createdTime = new Date().toISOString();
-    const id = createdTime.valueOf().toString();
+    const newDate = new Date();
+    const id = newDate.valueOf().toString();
+    const createdTime = newDate.toISOString();
     const newTask = {
       id,
       text,

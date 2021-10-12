@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "include": ["./**/*.ts"],
   "compilerOptions": {
-    "types": ["cypress", "node"],
+    "types": ["cypress"],
     "lib": ["esnext", "dom.iterable", "dom"],
     "isolatedModules": false,
     "allowJs": false,
