@@ -20,8 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:e2e": "start-server-and-test test:start-server cy:run",
-    "test:start-server": "yarn start",
+    "test:e2e": "start-server-and-test 'yarn start' http://localhost:3000 cy:run",
     "cy:run": "cypress run",
     "eject": "react-scripts eject"
   },
