@@ -67,6 +67,7 @@ function App() {
       <Container>
         <Header addTask={addTask} />
         <FilterSelector
+          currentFilter={currentFilter}
           setFilter={(filter: FilterValues) => setCurrentFilter(filter)}
         />
         <ul>{tasksToDisplay}</ul>

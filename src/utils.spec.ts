@@ -1,6 +1,7 @@
 import { FilterValues } from "./components/FilterSelector";
 import { ITask } from "./components/Task";
-import { byFilterValue } from "./utils";
+
+import { byFilterValue, getButtonClassName } from "./utils";
 
 describe("byFilterValue", () => {
   const todoTask: ITask = {
@@ -30,5 +31,19 @@ describe("byFilterValue", () => {
   it('filters the done task when the selected filter is "undone"', () => {
     expect(byFilterValue(doneTask, FilterValues.UNDONE)).toEqual(false);
     expect(byFilterValue(todoTask, FilterValues.UNDONE)).toEqual(true);
+  });
+});
+
+describe("getButtonClassName", () => {
+  it('returns "pressed" when the selected filter is the one from the button', () => {
+    expect(
+      getButtonClassName(FilterValues.UNDONE, FilterValues.UNDONE)
+    ).toEqual("pressed");
+  });
+
+  it('returns "unpressed" when the selected filter is not the one from the button', () => {
+    expect(getButtonClassName(FilterValues.ALL, FilterValues.UNDONE)).toEqual(
+      "unpressed"
+    );
   });
 });

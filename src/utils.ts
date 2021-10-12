@@ -14,3 +14,11 @@ export const byFilterValue = (
       return !task.done;
   }
 };
+
+
+export const getButtonClassName = (
+  buttonValue: FilterValues,
+  currentFilter: FilterValues
+) => {
+  return currentFilter === buttonValue ? "pressed" : "unpressed";
+};
