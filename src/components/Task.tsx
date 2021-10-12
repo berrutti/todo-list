@@ -42,6 +42,10 @@ function Task({
     setEditedText(event.target.value);
   };
 
+  const title = editedTime
+    ? `Edited Time: ${editedTime}`
+    : `Created Time: ${createdTime}`;
+
   return (
     <li>
       {editing ? (
@@ -71,12 +75,9 @@ function Task({
               defaultChecked={done}
               onChange={() => toggleDone(id)}
             />
-            <label htmlFor={id}>{text}</label>
-            {editedTime ? (
-              <span>Edited Time: {editedTime}</span>
-            ) : (
-              <span>Created Time: {createdTime}</span>
-            )}
+            <label htmlFor={id} title={title}>
+              {text}
+            </label>
           </div>
           <div>
             <button type="button" onClick={() => setEditing(true)}>
