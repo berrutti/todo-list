@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["./**/*.ts"],
+  "compilerOptions": {
+    "types": ["cypress", "node"],
+    "lib": ["esnext", "dom.iterable", "dom"],
+    "isolatedModules": false,
+    "allowJs": false,
+    "noEmit": true
+  }
+}
