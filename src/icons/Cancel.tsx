@@ -5,7 +5,7 @@ export function CancelIcon() {
       height="16"
       viewBox="0 0 60.963 60.842"
       fill="#000"
-      data-testid="check-icon"
+      data-testid="cancel-icon"
     >
       <path
         d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611

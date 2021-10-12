@@ -1,5 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { CancelIcon } from "../icons/Cancel";
+import { DeleteIcon } from "../icons/Delete";
+import { EditIcon } from "../icons/Edit";
 import { SaveIcon } from "../icons/Save";
 
 export interface ITask {
@@ -27,7 +29,7 @@ function Task({
   editTask,
 }: TaskProps): JSX.Element {
   const [editing, setEditing] = useState(false);
-  const [editedText, setEditedText] = useState<string>();
+  const [editedText, setEditedText] = useState<string>(text);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,11 +59,9 @@ function Task({
               id={id}
               type="text"
               placeholder={text}
-              value={editedText || text}
+              value={editedText}
               onChange={handleChange}
             />
-          </div>
-          <div>
             <button type="button" className="button" onClick={handleCancel}>
               <CancelIcon />
             </button>
@@ -82,13 +82,19 @@ function Task({
             <label htmlFor={id} title={title}>
               {text}
             </label>
-          </div>
-          <div>
-            <button type="button" onClick={() => setEditing(true)}>
-              Edit
+            <button
+              type="button"
+              className="button"
+              onClick={() => setEditing(true)}
+            >
+              <EditIcon />
             </button>
-            <button type="button" onClick={() => deleteTask(id)}>
-              Delete
+            <button
+              type="button"
+              className="button"
+              onClick={() => deleteTask(id)}
+            >
+              <DeleteIcon />
             </button>
           </div>
         </div>
