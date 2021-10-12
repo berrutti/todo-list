@@ -5,7 +5,7 @@ export function EditIcon() {
       height="16"
       viewBox="0 0 32 32"
       fill="#000"
-      data-testid="edit-icon"
+      data-test-id="edit-icon"
     >
       <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"></path>
     </svg>

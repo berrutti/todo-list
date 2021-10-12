@@ -5,7 +5,7 @@ export function DeleteIcon() {
       height="16"
       viewBox="0 0 72.434 72.44"
       fill="#000"
-      data-testid="delete-icon"
+      data-test-id="delete-icon"
     >
       <path
         d="M36.22,0C16.212,0,0,16.216,0,36.227c0,19.999,16.212,36.214,36.22,36.214

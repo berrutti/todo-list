@@ -5,7 +5,7 @@ export function SaveIcon() {
       height="16"
       viewBox="0 0 80.588 61.158"
       fill="#000"
-      data-testid="save-icon"
+      data-test-id="save-icon"
     >
       <path
         d="M29.658,61.157c-1.238,0-2.427-0.491-3.305-1.369L1.37,34.808c-1.826-1.825-1.826-4.785,0-6.611

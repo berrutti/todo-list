@@ -44,8 +44,8 @@ function Task({
   };
 
   const title = editedTime
-    ? `Edited Time: ${editedTime}`
-    : `Created Time: ${createdTime}`;
+    ? `Last Updated: ${editedTime}`
+    : `Created: ${createdTime}`;
 
   return (
     <li>
