@@ -1,4 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { CancelIcon } from "../icons/Cancel";
+import { SaveIcon } from "../icons/Save";
 
 export interface ITask {
   id: string;
@@ -60,10 +62,12 @@ function Task({
             />
           </div>
           <div>
-            <button type="button" onClick={handleCancel}>
-              Cancel
+            <button type="button" className="button" onClick={handleCancel}>
+              <CancelIcon />
             </button>
-            <button type="submit">Save</button>
+            <button type="submit" className="button">
+              <SaveIcon />
+            </button>
           </div>
         </form>
       ) : (
