@@ -10,7 +10,12 @@ After installing NVM, please run the following command.
 
 ```nvm use```
 
-To install the application, please execute:  
+The next steps will assume you have `yarn` installed. You can install it by executing:  
+```npm install -g yarn`  
+
+Please note that all the commands can be executed with npm in case you don't want yarn in your system.
+
+To install run the command:  
 
 ```yarn install```
 
