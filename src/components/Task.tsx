@@ -1,9 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { CancelIcon } from "../icons/Cancel";
-import { DeleteIcon } from "../icons/Delete";
-import { EditIcon } from "../icons/Edit";
-import { SaveIcon } from "../icons/Save";
-
+import { FiX as CancelIcon } from "react-icons/fi";
+import { FiTrash2 as DeleteIcon } from "react-icons/fi";
+import { FiEdit as EditIcon } from "react-icons/fi";
+import { FiCheck as SaveIcon } from "react-icons/fi";
 export interface ITask {
   id: string;
   createdTime: string;
@@ -55,25 +54,17 @@ function Task({
             <input
               id={id}
               type="text"
+              required
               placeholder={text}
               value={editedText}
               onChange={handleChange}
             />
-            <button
-              type="button"
-              className="icon-button"
-              onClick={() => setEditing(false)}
-            >
-              <CancelIcon />
-            </button>
-            <button type="submit" className="icon-button">
-              <SaveIcon />
-            </button>
+            <CancelIcon onClick={() => setEditing(false)} />
+            <SaveIcon type="submit" />
           </div>
         </form>
       ) : (
-        <div>
-          <div>
+          <>
             <input
               id={id}
               type="checkbox"
@@ -83,22 +74,9 @@ function Task({
             <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
               {text}
             </label>
-            <button
-              type="button"
-              className="icon-button"
-              onClick={() => setEditing(true)}
-            >
-              <EditIcon />
-            </button>
-            <button
-              type="button"
-              className="icon-button"
-              onClick={() => deleteTask(id)}
-            >
-              <DeleteIcon />
-            </button>
-          </div>
-        </div>
+            <EditIcon onClick={() => setEditing(true)} /> 
+            <DeleteIcon onClick={() => deleteTask(id)} />
+          </>
       )}
     </li>
   );

@@ -18,6 +18,7 @@ function FilterSelector({
   return (
     <>
       <button
+        type="button"
         data-test-id="undone-tasks-button"
         className={getButtonClassName(FilterValues.UNDONE, currentFilter)}
         onClick={() => setFilter(FilterValues.UNDONE)}
@@ -25,6 +26,7 @@ function FilterSelector({
         To Do
       </button>
       <button
+        type="button"
         data-test-id="done-tasks-button"
         className={getButtonClassName(FilterValues.DONE, currentFilter)}
         onClick={() => setFilter(FilterValues.DONE)}
@@ -32,6 +34,7 @@ function FilterSelector({
         Done
       </button>
       <button
+        type="button"
         data-test-id="all-tasks-button"
         className={getButtonClassName(FilterValues.ALL, currentFilter)}
         onClick={() => setFilter(FilterValues.ALL)}

@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 24px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 20px;
   color: #404040;
 }
 
@@ -16,49 +16,53 @@ ul {
   margin: 0;
 }
 
-.crossed {
-  text-decoration: line-through;
+li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.icon-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  padding: 10px 20px;
+  margin: 10px;
+}
 
-  width: 16px;
-  height: 16px;
-  padding: 0;
+label {
+  margin: 10px;
+}
 
-  position: relative;
+input[type="text"] {
+  font-size: 20px;
+  padding: 8px;
+}
 
-  background: none;
-  outline: none;
+button {
+  background-color: #4caf50;
   border: none;
-  color: inherit;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
 
-  font: inherit;
-  cursor: pointer;
-  user-select: none;
+.crossed {
+  text-decoration: line-through;
 }
 
 .unpressed {
   background: #3f88c5;
   color: #fff;
-  padding: 3px 10px;
-  margin: 0 0 0 3px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  vertical-align: bottom;
 }
 
 .pressed {
   background: #032b43;
   color: #fff;
-  padding: 3px 10px;
-  margin: 0 0 0 3px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  vertical-align: bottom;
 }

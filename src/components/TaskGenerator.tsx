@@ -21,6 +21,7 @@ function TaskGenerator({ addTask }: TaskGeneratorProps): JSX.Element {
 
       <input
         id="add-task-input"
+        required
         type="text"
         name="text"
         autoComplete="off"
