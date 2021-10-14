@@ -1,17 +1,20 @@
-# To Do App
+# To Do list
 
-This project is an exercise of a simple To Do application.  
-It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an implementation of a simple To Do list application.  
+It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
+A live version of this application can be found here: http://todo-list-flax-rho.vercel.app/  
 
 ## Installation
 
-It is recommended to use [NVM](https://github.com/nvm-sh/nvm) to select a compatible version of NodeJS.
+The current LTS version of NodeJS should be enough to build the project.  
+It is recommended to use [NVM](https://github.com/nvm-sh/nvm) to select a compatible version of node.
 After installing NVM, please run the following command.  
 
 ```nvm use```
 
 The next steps will assume you have `yarn` installed. You can install it by executing:  
-```npm install -g yarn`  
+
+```npm install -g yarn```  
 
 Please note that all the commands can be executed with npm in case you don't want yarn in your system.
 
