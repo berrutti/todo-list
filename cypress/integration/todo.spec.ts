@@ -20,7 +20,7 @@ describe("todo app", () => {
 
   it("shows the edition time of the task when the task is edited", () => {
     cy.get("li").find('[data-test-id="edit-icon"]').click();
-    cy.get("li").find("input").type(" and pet the dog!");
+    cy.get("li").find("input").type("Pet the dog");
     cy.get("li").find('[data-test-id="save-icon"]').click();
     cy.get("li")
       .find("label")
@@ -28,7 +28,7 @@ describe("todo app", () => {
       .should("contain", "Last Updated:");
     cy.get("li")
       .find("label")
-      .should("have.text", "Take out the trash and pet the dog!");
+      .should("have.text", "Pet the dog");
   });
 
   it("can check off task as completed", () => {
