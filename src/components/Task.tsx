@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { FiX as CancelIcon } from "react-icons/fi";
 import { FiTrash2 as DeleteIcon } from "react-icons/fi";
 import { FiEdit as EditIcon } from "react-icons/fi";
@@ -28,18 +28,30 @@ function Task({
   editTask,
 }: TaskProps): JSX.Element {
   const [editing, setEditing] = useState(false);
-  const [editedText, setEditedText] = useState<string>(text);
+  const [editedText, setEditedText] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSave = () => {
-    setEditing(false);
     if (editedText) {
       editTask(id, editedText);
     }
+    finishEditing();
+  };
+
+  const finishEditing = () => {
+    setEditedText("");
+    setEditing(false);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEditedText(event.target.value);
   };
+
+  useEffect(() => {
+    if (editing && inputRef?.current) {
+      inputRef.current.focus();
+    }
+  }, [editing]);
 
   const title = editedTime
     ? `Last Updated: ${editedTime}`
@@ -53,16 +65,16 @@ function Task({
             className="list-input"
             id={id}
             type="text"
-            required
             placeholder={text}
             value={editedText}
             onChange={handleChange}
+            ref={inputRef}
           />
           <CancelIcon
             data-test-id="cancel-icon"
             tabIndex={0}
-            onKeyPress={() => setEditing(false)}
-            onClick={() => setEditing(false)}
+            onKeyPress={finishEditing}
+            onClick={finishEditing}
           />
           <SaveIcon
             data-test-id="save-icon"
