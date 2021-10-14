@@ -30,7 +30,7 @@ function Task({
   const [editing, setEditing] = useState(false);
   const [editedText, setEditedText] = useState<string>(text);
 
-  const handleSubmit = () => {
+  const handleSave = () => {
     setEditing(false);
     if (editedText) {
       editTask(id, editedText);
@@ -58,8 +58,8 @@ function Task({
             value={editedText}
             onChange={handleChange}
           />
-          <CancelIcon onClick={() => setEditing(false)} />
-          <SaveIcon onClick={handleSubmit} />
+          <CancelIcon tabIndex={0} onKeyPress={() => setEditing(false)} onClick={() => setEditing(false)} />
+          <SaveIcon tabIndex={0} onKeyPress={handleSave} onClick={handleSave} />
         </>
       ) : (
         <>
@@ -72,8 +72,8 @@ function Task({
           <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
             {text}
           </label>
-          <EditIcon onClick={() => setEditing(true)} />
-          <DeleteIcon onClick={() => deleteTask(id)} />
+          <EditIcon tabIndex={0} onKeyPress={() => setEditing(true)} onClick={() => setEditing(true)} />
+          <DeleteIcon tabIndex={0} onKeyPress={() => deleteTask(id)} onClick={() => deleteTask(id)} />
         </>
       )}
     </li>
