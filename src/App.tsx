@@ -5,6 +5,8 @@ import Container from "./components/Container";
 import Header from "./components/TaskGenerator";
 import Task, { ITask } from "./components/Task";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { byFilterValue } from "./utils";
 import "./App.css";
 
@@ -26,6 +28,7 @@ function App() {
       createdTime,
     };
     setTasks([...tasks, newTask]);
+    toast.success("Task created");
   };
 
   const editTask = (id: string, text: string) => {
@@ -36,13 +39,23 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const deleteTask = (id: string) =>
+  const deleteTask = (id: string) => {
+    toast.warning("Task deleted");
     setTasks(tasks.filter((task) => task.id !== id));
+  };
 
   const toggleDone = (id: string) => {
-    const updatedTasks = tasks.map((task) =>
-      id === task.id ? { ...task, done: !task.done } : task
-    );
+    const updatedTasks = tasks.map((task) => {
+      if (id === task.id) {
+        if (task.done) {
+          toast.info("Task reverted");
+        } else {
+          toast.success("Task completed");
+        }
+        return { ...task, done: !task.done };
+      }
+      return task;
+    });
     setTasks(updatedTasks);
   };
 
@@ -72,6 +85,12 @@ function App() {
         />
         <ul>{tasksToDisplay}</ul>
       </Container>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+      />
     </div>
   );
 }

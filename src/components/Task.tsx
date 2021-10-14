@@ -58,8 +58,18 @@ function Task({
             value={editedText}
             onChange={handleChange}
           />
-          <CancelIcon tabIndex={0} onKeyPress={() => setEditing(false)} onClick={() => setEditing(false)} />
-          <SaveIcon tabIndex={0} onKeyPress={handleSave} onClick={handleSave} />
+          <CancelIcon
+            data-test-id="cancel-icon"
+            tabIndex={0}
+            onKeyPress={() => setEditing(false)}
+            onClick={() => setEditing(false)}
+          />
+          <SaveIcon
+            data-test-id="save-icon"
+            tabIndex={0}
+            onKeyPress={handleSave}
+            onClick={handleSave}
+          />
         </>
       ) : (
         <>
@@ -72,8 +82,18 @@ function Task({
           <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
             {text}
           </label>
-          <EditIcon tabIndex={0} onKeyPress={() => setEditing(true)} onClick={() => setEditing(true)} />
-          <DeleteIcon tabIndex={0} onKeyPress={() => deleteTask(id)} onClick={() => deleteTask(id)} />
+          <EditIcon
+            data-test-id="edit-icon"
+            tabIndex={0}
+            onKeyPress={() => setEditing(true)}
+            onClick={() => setEditing(true)}
+          />
+          <DeleteIcon
+            data-test-id="delete-icon"
+            tabIndex={0}
+            onKeyPress={() => deleteTask(id)}
+            onClick={() => deleteTask(id)}
+          />
         </>
       )}
     </li>
