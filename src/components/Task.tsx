@@ -88,7 +88,7 @@ function Task({
           <input
             id={id}
             type="checkbox"
-            defaultChecked={done}
+            checked={done}
             onChange={() => toggleDone(id)}
           />
           <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
