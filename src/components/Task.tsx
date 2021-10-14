@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FiX as CancelIcon } from "react-icons/fi";
 import { FiTrash2 as DeleteIcon } from "react-icons/fi";
 import { FiEdit as EditIcon } from "react-icons/fi";
@@ -30,8 +30,7 @@ function Task({
   const [editing, setEditing] = useState(false);
   const [editedText, setEditedText] = useState<string>(text);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     setEditing(false);
     if (editedText) {
       editTask(id, editedText);
@@ -49,34 +48,33 @@ function Task({
   return (
     <li>
       {editing ? (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              id={id}
-              type="text"
-              required
-              placeholder={text}
-              value={editedText}
-              onChange={handleChange}
-            />
-            <CancelIcon onClick={() => setEditing(false)} />
-            <SaveIcon type="submit" />
-          </div>
-        </form>
+        <>
+          <input
+            className="list-input"
+            id={id}
+            type="text"
+            required
+            placeholder={text}
+            value={editedText}
+            onChange={handleChange}
+          />
+          <CancelIcon onClick={() => setEditing(false)} />
+          <SaveIcon onClick={handleSubmit} />
+        </>
       ) : (
-          <>
-            <input
-              id={id}
-              type="checkbox"
-              defaultChecked={done}
-              onChange={() => toggleDone(id)}
-            />
-            <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
-              {text}
-            </label>
-            <EditIcon onClick={() => setEditing(true)} /> 
-            <DeleteIcon onClick={() => deleteTask(id)} />
-          </>
+        <>
+          <input
+            id={id}
+            type="checkbox"
+            defaultChecked={done}
+            onChange={() => toggleDone(id)}
+          />
+          <label className={done ? "crossed" : ""} htmlFor={id} title={title}>
+            {text}
+          </label>
+          <EditIcon onClick={() => setEditing(true)} />
+          <DeleteIcon onClick={() => deleteTask(id)} />
+        </>
       )}
     </li>
   );

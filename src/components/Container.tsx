@@ -5,7 +5,7 @@ type ContainerProps = {
 };
 
 function Container({ children }: ContainerProps): JSX.Element {
-  return <div>{children}</div>;
+  return <div className='container'>{children}</div>;
 }
 
 export default Container;
